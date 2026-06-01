@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from app.config import settings
-from app.routers import health, integration_catalog, patients
+from app.routers import health_status, integration_catalog, patients
 
 app = FastAPI(
     title=settings.app_name,
@@ -9,7 +9,7 @@ app = FastAPI(
     description="API gateway for clinical, laboratory and research integrations.",
 )
 
-app.include_router(health.router, tags=["health"])
+app.include_router(health_status.router, tags=["health"])
 app.include_router(patients.router, prefix="/v1/patients", tags=["patients"])
 app.include_router(
     integration_catalog.router,
